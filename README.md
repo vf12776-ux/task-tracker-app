@@ -1,3 +1,4 @@
+<img width="2205" height="2205" alt="qr-code (12)" src="https://github.com/user-attachments/assets/ee61753e-a423-4a06-ae8f-2cbdddc9b61e" />
 # 📱 Task Tracker
 
 <p align="center">
@@ -73,7 +74,8 @@ flutter build web
 
 Повторяющиеся задачи
 
-<div align="center">
+<div align="center"><img width="2205" height="2205" alt="qr-code (12)" src="https://github.com/user-attachments/assets/be17234e-dab3-4ce9-bfee-d4052be3b166" />
+
 Разработано с ❤️ на Flutter
 
 </div> ```
