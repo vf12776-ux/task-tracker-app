@@ -30,8 +30,59 @@
 
   <title>task_tracker</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    #flutter-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loader-text {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
+  <div id="flutter-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Task Tracker</div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
   <script src="flutter_bootstrap.js" async></script>
   <script>
 if ('serviceWorker' in navigator) {
@@ -42,5 +93,19 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Ждём полной загрузки Flutter
+      setTimeout(function() {
+        var loader = document.getElementById('flutter-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 500);
+        }
+      }, 2000); // Можно настроить время (2000ms = 2 секунды)
+    });
+  </script>
 </body>
 </html>
